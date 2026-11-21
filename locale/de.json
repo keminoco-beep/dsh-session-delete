@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Sitzung endgültig löschen",
+    "description": "Löscht eine Unterhaltung und ihre lokal gespeicherten Sitzungsdateien endgültig über das Kontextmenü der Sitzung.",
+    "detail": "docs/DETAIL.md"
+  }
+}

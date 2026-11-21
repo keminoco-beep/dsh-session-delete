@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Suppression définitive de session",
+    "description": "Supprime définitivement une conversation et ses fichiers de session locaux depuis le menu contextuel de la session.",
+    "detail": "docs/DETAIL.md"
+  }
+}

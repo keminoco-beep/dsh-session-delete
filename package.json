@@ -1,0 +1,36 @@
+{
+  "name": "dsh-session-delete",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Force-delete conversations and delete whole workspace folders from DSH context menus, without restarting DSH.",
+  "repository": "https://github.com/keminoco-beep/dsh-session-delete.git",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./icon": "./icon.svg",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-context-menu"
+      ]
+    },
+    "manifestVersion": 1
+  }
+}

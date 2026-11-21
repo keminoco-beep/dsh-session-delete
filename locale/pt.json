@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Excluir sessão permanentemente",
+    "description": "Exclui permanentemente uma conversa e seus arquivos de sessão locais pelo menu de contexto da sessão.",
+    "detail": "docs/DETAIL.md"
+  }
+}

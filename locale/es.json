@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Eliminar sesión permanentemente",
+    "description": "Elimina definitivamente una conversación y sus archivos de sesión locales desde el menú contextual de la sesión.",
+    "detail": "docs/DETAIL.md"
+  }
+}

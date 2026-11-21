@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "彻底删除会话",
+    "description": "在会话右键菜单中彻底删除整条对话及本机会话文件，也可删除整个工作区文件夹。",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}

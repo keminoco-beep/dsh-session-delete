@@ -1,0 +1,4 @@
+_research/
+.dsh-pilot/
+node_modules/
+*.log

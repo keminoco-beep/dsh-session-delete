@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Permanent Session Delete",
+    "description": "Permanently delete conversations and whole workspace folders from the right-click menus.",
+    "detail": "docs/DETAIL.md"
+  }
+}
