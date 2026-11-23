@@ -20,6 +20,8 @@ The Workspace context menu also has **Delete workspace and folder**:
 
 This option deletes only the project folder and the workspace registration. It does not automatically delete the conversations recorded in that workspace. The built-in **Delete workspace** action keeps its original behavior and only removes the registration.
 
+If the registered folder no longer exists, the plugin reports an error and **keeps the workspace registration** instead of silently succeeding. Check whether the folder was renamed or moved; use the built-in **Delete workspace** when only the registration should be removed.
+
 ## What is deleted
 
 - The conversation's session record, meaning the session log artifact reported by the configured DSH persistence backend;

@@ -1,6 +1,6 @@
 {
   "name": "dsh-session-delete",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Force-delete conversations and delete whole workspace folders from DSH context menus, without restarting DSH.",
   "repository": "https://github.com/keminoco-beep/dsh-session-delete.git",

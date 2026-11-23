@@ -158,6 +158,21 @@ try {
   })
   assert.equal(workspaceDeleted, 1)
   await assert.rejects(stat(project), { code: 'ENOENT' })
+
+  let missingDeleted = 0
+  const missingResponse = response()
+  await handleWorkspace({
+    connection: { requestRejection: () => undefined },
+    workspaceRegistry: {
+      list: () => [{ id: 'workspace-missing', path: join(root, 'missing-project') }],
+      delete: async () => { missingDeleted += 1; return true },
+    },
+    logger: { warn: () => {} },
+  }, workspaceRequest('workspace-missing'), missingResponse)
+  assert.equal(missingResponse.status, 404)
+  assert.equal(missingResponse.payload.code, 'folder-not-found')
+  assert.equal(missingDeleted, 0)
+
   assert.throws(() => workspaceFolder('relative/path'))
   assert.throws(() => workspaceFolder('C:\\'))
 

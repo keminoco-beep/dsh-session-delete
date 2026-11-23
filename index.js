@@ -125,7 +125,9 @@ async function removeWorkspaceFolder(path) {
   try {
     info = await lstat(path)
   } catch (error) {
-    if (error?.code === 'ENOENT') return false
+    if (error?.code === 'ENOENT') {
+      throw new HttpError(404, 'folder-not-found', 'workspace folder does not exist; registration was kept')
+    }
     throw error
   }
   if (info.isSymbolicLink()) {

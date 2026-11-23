@@ -27,6 +27,7 @@ window.__ModuleLoader__.load({
         'dialog.confirmWorkspace': '删除工作区及文件夹',
         'notice.workspaceDeleted': '工作区及文件夹已删除',
         'error.workspaceNotFound': '这个工作区已经不存在，请刷新后重试。',
+        'error.folderNotFound': '工作区对应的文件夹不存在，注册记录没有被删除。请检查路径；如果只想移除注册，请使用“删除工作区”。',
         'error.unsafePath': '这个工作区路径受保护，不能删除。',
         'dialog.title': '彻底删除这条会话？',
         'dialog.description': '即将删除「{title}」的整条对话记录，以及 DSH 在本机为它保存的会话文件。',
@@ -56,6 +57,7 @@ window.__ModuleLoader__.load({
         'dialog.confirmWorkspace': 'Delete workspace and folder',
         'notice.workspaceDeleted': 'Workspace and folder deleted',
         'error.workspaceNotFound': 'This workspace no longer exists. Refresh and try again.',
+        'error.folderNotFound': 'The workspace folder does not exist, so its registration was kept. Check the path; to remove only the registration, use “Delete workspace”.',
         'error.unsafePath': 'This workspace path is protected and cannot be deleted.',
         'dialog.title': 'Delete this conversation permanently?',
         'dialog.description': 'This will permanently delete “{title}” and the session files DSH stored for it on this computer.',
@@ -330,6 +332,7 @@ window.__ModuleLoader__.load({
             if (code === 'forbidden') throw new Error(t('error.forbidden'))
             if (code === 'io-error') throw new Error(t('error.io'))
             if (code === 'workspace-not-found') throw new Error(t('error.workspaceNotFound'))
+            if (code === 'folder-not-found') throw new Error(t('error.folderNotFound'))
             if (code === 'unsafe-path') throw new Error(t('error.unsafePath'))
             throw new Error(t('error.generic', { message: t('error.unknown') }))
           }
