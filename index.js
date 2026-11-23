@@ -26,6 +26,7 @@ export const inject = [
   'workspaceRegistry',
   'sessions',
   'agents',
+  'connection',
 ]
 
 class HttpError extends Error {
@@ -62,6 +63,7 @@ export function apply(ctx) {
 async function handleWorkspace(ctx, req, res) {
   try {
     if (req.method !== 'POST') throw new HttpError(405, 'method', 'POST required')
+    requireDshConnection(ctx, req)
     requireSameOrigin(req)
     if (req.headers['x-dsh-session-delete'] !== '1') {
       throw new HttpError(403, 'forbidden', 'missing request marker')
@@ -139,6 +141,7 @@ async function removeWorkspaceFolder(path) {
 async function handle(ctx, req, res) {
   try {
     if (req.method !== 'POST') throw new HttpError(405, 'method', 'POST required')
+    requireDshConnection(ctx, req)
     requireSameOrigin(req)
     if (req.headers['x-dsh-session-delete'] !== '1') {
       throw new HttpError(403, 'forbidden', 'missing request marker')
@@ -364,6 +367,13 @@ function warn(ctx, message) {
   try {
     ctx.logger?.warn?.(`session-delete: ${message}`)
   } catch { /* best effort */ }
+}
+
+function requireDshConnection(ctx, req) {
+  const rejection = ctx.connection.requestRejection(req)
+  if (rejection !== undefined) {
+    throw new HttpError(rejection, 'forbidden', 'DSH connection refused this request')
+  }
 }
 
 function requireSameOrigin(req) {

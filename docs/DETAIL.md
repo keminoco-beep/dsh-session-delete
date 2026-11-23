@@ -40,7 +40,7 @@ If the force-close step fails, the dialog reports that the process could not rel
 
 ## Safety boundary
 
-The Host accepts only the same-origin `POST /api/session-delete` and `POST /api/workspace-delete` with the `x-dsh-session-delete: 1` header.
+The Host accepts only same-origin `POST /api/session-delete` and `POST /api/workspace-delete` requests that pass DSH connection admission (`ctx.connection.requestRejection`) and carry the `x-dsh-session-delete: 1` header.
 
 - For conversations, the path that is actually removed comes from the artifact location reported by `sessionPersistence.stat()`. Only a directory or file whose path matches the session id is accepted.
 - For workspaces, the path comes from the Host-side registration looked up by `workspaceId`; client-supplied paths are ignored. Only an absolute, real directory is accepted. Drive roots, the home directory, `~/.dsh` and its descendants, symlinks, and paths containing `..` are refused.

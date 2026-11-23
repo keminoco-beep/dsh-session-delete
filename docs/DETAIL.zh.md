@@ -40,7 +40,7 @@
 
 ## 安全边界
 
-Host 端只接受同源的 `POST /api/session-delete` 和 `POST /api/workspace-delete`，并要求请求头 `x-dsh-session-delete: 1`。
+Host 端只接受通过 DSH 连接鉴权（`ctx.connection.requestRejection`）的同源 `POST /api/session-delete` 和 `POST /api/workspace-delete`，并要求请求头 `x-dsh-session-delete: 1`。
 
 - 删除会话时，实际路径来自 `sessionPersistence.stat()` 报告的 artifact location，且只允许删除与会话 ID 匹配的目录或文件名。
 - 删除工作区时，路径来自 Host 端按 `workspaceId` 查到的注册记录，不接受客户端直接传入路径；只允许绝对路径的真实目录，并拒绝驱动器根目录、用户主目录、`~/.dsh` 及其子目录、符号链接和包含 `..` 的路径。

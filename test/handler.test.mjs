@@ -49,6 +49,7 @@ function context(sessionId, file, { live = false } = {}) {
   return {
     calls,
     ctx: {
+      connection: { requestRejection: () => undefined },
       agents: {
         get: () => live ? agent : undefined,
         store: new Map(live ? [[sessionId, agentEntry]] : []),
@@ -95,6 +96,14 @@ try {
   }
 
   await seed()
+  const denied = context(id, file)
+  denied.ctx.connection.requestRejection = () => 403
+  const deniedResponse = response()
+  await handle(denied.ctx, request(id), deniedResponse)
+  assert.equal(deniedResponse.status, 403)
+  assert.equal(deniedResponse.payload.code, 'forbidden')
+  assert.equal((await stat(file)).isFile(), true)
+
   const success = context(id, file)
   const ok = response()
   await handle(success.ctx, request(id), ok)
@@ -135,6 +144,7 @@ try {
   let workspaceDeleted = 0
   const workspaceResponse = response()
   await handleWorkspace({
+    connection: { requestRejection: () => undefined },
     workspaceRegistry: {
       list: () => [{ id: 'workspace-test', path: project }],
       delete: async () => { workspaceDeleted += 1; return true },
